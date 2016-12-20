@@ -87,6 +87,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         private float startRadius;
     }
 
+    private final int ICONS_SIZE = 7;
     private LinearLayoutManager attachPhotoLayoutManager;
     private PhotoAttachAdapter photoAttachAdapter;
     private ChatActivity baseFragment;
@@ -533,7 +534,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 hintTextView.layout(width - hintTextView.getMeasuredWidth() - AndroidUtilities.dp(5), height - hintTextView.getMeasuredHeight() - AndroidUtilities.dp(5), width - AndroidUtilities.dp(5), height - AndroidUtilities.dp(5));
 
                 int diff = (width - AndroidUtilities.dp(85 * 4 + 20)) / 3;
-                for (int a = 0; a < 8; a++) {
+                for (int a = 0; a < ICONS_SIZE; a++) {
                     int y = AndroidUtilities.dp(105 + 95 * (a / 4));
                     int x = AndroidUtilities.dp(10) + (a % 4) * (AndroidUtilities.dp(85) + diff);
                     views[a].layout(x, y, x + views[a].getMeasuredWidth(), y + views[a].getMeasuredHeight());
@@ -613,27 +614,33 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         CharSequence[] items = new CharSequence[]{
                 LocaleController.getString("ChatCamera", R.string.ChatCamera),
                 LocaleController.getString("ChatGallery", R.string.ChatGallery),
-                LocaleController.getString("ChatVideo", R.string.ChatVideo),
                 LocaleController.getString("AttachMusic", R.string.AttachMusic),
                 LocaleController.getString("ChatDocument", R.string.ChatDocument),
                 LocaleController.getString("AttachContact", R.string.AttachContact),
                 LocaleController.getString("ChatLocation", R.string.ChatLocation),
                 ""
         };
-        for (int a = 0; a < 8; a++) {
+        int last = ICONS_SIZE - 1;
+
+        for (int a = 0; a < ICONS_SIZE; a++) {
             AttachButton attachButton = new AttachButton(context);
             attachButton.setTextAndIcon(items[a], Theme.attachButtonDrawables[a]);
             attachView.addView(attachButton, LayoutHelper.createFrame(85, 90, Gravity.LEFT | Gravity.TOP));
             attachButton.setTag(a);
             views[a] = attachButton;
-            if (a == 7) {
+            if (a == last) {
                 sendPhotosButton = attachButton;
                 sendPhotosButton.imageView.setPadding(0, AndroidUtilities.dp(4), 0, 0);
             }
             attachButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    delegate.didPressedButton((Integer) v.getTag());
+                    int which = (Integer) v.getTag();
+                    if(which == 0){
+                        openCamera();
+                    }else{
+                        delegate.didPressedButton(which);
+                    }
                 }
             });
         }
@@ -650,7 +657,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         hintTextView.setCompoundDrawablePadding(AndroidUtilities.dp(8));
         attachView.addView(hintTextView, LayoutHelper.createFrame(LayoutHelper.WRAP_CONTENT, 32, Gravity.RIGHT | Gravity.BOTTOM, 5, 0, 5, 5));
 
-        for (int a = 0; a < 8; a++) {
+        for (int a = 0; a < ICONS_SIZE; a++) {
             viewsCache.add(photoAttachAdapter.createHolder());
         }
 
@@ -2106,7 +2113,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             NotificationCenter.getInstance().setAnimationInProgress(true);
             revealAnimationInProgress = true;
 
-            int count = Build.VERSION.SDK_INT <= 19 ? 11 : 8;
+            int count = Build.VERSION.SDK_INT <= 19 ? 11 : ICONS_SIZE;
             for (int a = 0; a < count; a++) {
                 if (Build.VERSION.SDK_INT <= 19) {
                     if (a < 8) {

@@ -377,12 +377,11 @@ public class Theme {
         if (attachButtonDrawables[0] == null) {
             attachButtonDrawables[0] = context.getResources().getDrawable(R.drawable.attach_camera_states);
             attachButtonDrawables[1] = context.getResources().getDrawable(R.drawable.attach_gallery_states);
-            attachButtonDrawables[2] = context.getResources().getDrawable(R.drawable.attach_video_states);
-            attachButtonDrawables[3] = context.getResources().getDrawable(R.drawable.attach_audio_states);
-            attachButtonDrawables[4] = context.getResources().getDrawable(R.drawable.attach_file_states);
-            attachButtonDrawables[5] = context.getResources().getDrawable(R.drawable.attach_contact_states);
-            attachButtonDrawables[6] = context.getResources().getDrawable(R.drawable.attach_location_states);
-            attachButtonDrawables[7] = context.getResources().getDrawable(R.drawable.attach_hide_states);
+            attachButtonDrawables[2] = context.getResources().getDrawable(R.drawable.attach_audio_states);
+            attachButtonDrawables[3] = context.getResources().getDrawable(R.drawable.attach_file_states);
+            attachButtonDrawables[4] = context.getResources().getDrawable(R.drawable.attach_contact_states);
+            attachButtonDrawables[5] = context.getResources().getDrawable(R.drawable.attach_location_states);
+            attachButtonDrawables[6] = context.getResources().getDrawable(R.drawable.attach_hide_states);
         }
     }
 

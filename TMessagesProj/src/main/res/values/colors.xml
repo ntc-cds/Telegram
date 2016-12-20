@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="divider">#dcdcdc</color>
+
+    <color name="cet_primary">#1f272c</color>
+    <color name="cet_primary_dark">#0A1C2B</color>
+    <color name="cet_accent">#FF9000</color>
 </resources>

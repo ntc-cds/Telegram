@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 
 public class BaseFragment {
@@ -126,7 +127,7 @@ public class BaseFragment {
 
     protected ActionBar createActionBar(Context context) {
         ActionBar actionBar = new ActionBar(context);
-        actionBar.setBackgroundColor(Theme.ACTION_BAR_COLOR);
+        actionBar.setBackgroundColor(context.getResources().getColor(R.color.cet_primary));
         actionBar.setItemsBackgroundColor(Theme.ACTION_BAR_SELECTOR_COLOR);
         return actionBar;
     }

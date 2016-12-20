@@ -22,6 +22,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -29,12 +30,14 @@ import android.graphics.Outline;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.util.Base64;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -299,8 +302,9 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
 
     @Override
     public View createView(Context context) {
-        actionBar.setBackgroundColor(AvatarDrawable.getProfileBackColorForId(5));
-        actionBar.setItemsBackgroundColor(AvatarDrawable.getButtonColorForId(5));
+        int colorPrimary = context.getResources().getColor(R.color.cet_primary);
+        actionBar.setBackgroundColor(colorPrimary);
+        actionBar.setItemsBackgroundColor(colorPrimary);
         actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         actionBar.setAddToContainer(false);
         extraHeight = 88;
@@ -372,7 +376,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         listView = new RecyclerListView(context);
         listView.setVerticalScrollBarEnabled(false);
         listView.setLayoutManager(layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
-        listView.setGlowColor(AvatarDrawable.getProfileBackColorForId(5));
+        listView.setGlowColor(colorPrimary);
         frameLayout.addView(listView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.MATCH_PARENT, Gravity.TOP | Gravity.LEFT));
         listView.setAdapter(listAdapter);
         listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
@@ -748,7 +752,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
 
         extraHeightView = new View(context);
         extraHeightView.setPivotY(0);
-        extraHeightView.setBackgroundColor(AvatarDrawable.getProfileBackColorForId(5));
+        extraHeightView.setBackgroundColor(colorPrimary);
         frameLayout.addView(extraHeightView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, 88));
 
         shadowView = new View(context);

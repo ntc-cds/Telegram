@@ -67,7 +67,7 @@ public class DrawerProfileCell extends FrameLayout {
             if (ApplicationLoader.isCustomTheme() && ApplicationLoader.getCachedWallpaper() != null) {
                 paint.setColor(ApplicationLoader.getServiceMessageColor());
             } else {
-                paint.setColor(0xff427ba9);
+                paint.setColor(getResources().getColor(R.color.cet_primary_dark));
             }
             canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, AndroidUtilities.dp(34) / 2.0f, paint);
             int l = (getMeasuredWidth() - AndroidUtilities.dp(33)) / 2;
@@ -79,7 +79,7 @@ public class DrawerProfileCell extends FrameLayout {
 
     public DrawerProfileCell(Context context) {
         super(context);
-        setBackgroundColor(Theme.ACTION_BAR_PROFILE_COLOR);
+        setBackgroundColor(context.getResources().getColor(R.color.cet_primary));
 
         shadowView = new ImageView(context);
         shadowView.setVisibility(INVISIBLE);

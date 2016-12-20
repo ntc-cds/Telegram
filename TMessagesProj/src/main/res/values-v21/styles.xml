@@ -16,8 +16,9 @@
         <item name="android:colorBackground">@android:color/white</item>
         <item name="android:windowBackground">@android:color/white</item>
         <item name="android:windowContentOverlay">@null</item>
-        <item name="android:colorPrimaryDark">#426482</item>
-        <item name="android:colorPrimary">#527da3</item>
+        <item name="android:colorPrimaryDark">@color/cet_primary_dark</item>
+        <item name="android:colorPrimary">@color/cet_primary</item>
+        <item name="android:colorAccent">@color/cet_primary_dark</item>
     </style>
 
     <style name="Theme.TMessages" parent="@android:style/Theme.Material.Light">
@@ -32,8 +33,8 @@
         <item name="android:listChoiceBackgroundIndicator">@drawable/list_selector</item>
         <item name="android:editTextStyle">@style/Theme.TMessages.EditText</item>
         <item name="android:actionBarItemBackground">@drawable/bar_selector_style</item>
-        <item name="android:colorPrimaryDark">#33000000</item>
-        <item name="android:colorPrimary">#527da3</item>
+        <item name="android:colorPrimaryDark">@color/cet_primary_dark</item>
+        <item name="android:colorPrimary">@color/cet_primary</item>
         <item name="android:alertDialogTheme">@style/Theme.TMessages.Dialog.Alert</item>
         <item name="android:colorControlActivated">#4991cc</item>
     </style>
@@ -48,7 +49,7 @@
     </style>
 
     <style name="Theme.TMessages.Dialog.Alert" parent="android:style/Theme.Material.Light.Dialog.Alert">
-        <item name="android:colorAccent">#4991cc</item>
+        <item name="android:colorAccent">@color/cet_primary</item>
     </style>
 
     <style name="Theme.TMessages.Transparent" parent="Theme.TMessages">
@@ -67,7 +68,7 @@
     <!--ACTION BAR-->
 
     <style name="ActionBar.Transparent.TMessages.Start" parent="android:style/Widget.Material.Light.ActionBar">
-        <item name="android:background">#ff527da3</item>
+        <item name="android:background">@color/cet_primary</item>
         <item name="android:logo">@drawable/transparent</item>
         <item name="android:title">""</item>
     </style>
@@ -82,7 +83,7 @@
     <!--BORDERLESS BUTTON-->
 
     <style name="Theme.TMessages.BorderLessButton" parent="android:Widget.Material.Light.ButtonBar.AlertDialog">
-        <item name="android:textColor">#4991cc</item>
+        <item name="android:textColor">@color/cet_primary</item>
     </style>
 
     <!--LIST VIEW-->

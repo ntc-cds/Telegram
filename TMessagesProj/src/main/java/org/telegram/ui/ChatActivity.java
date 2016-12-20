@@ -445,11 +445,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     private final static int attach_photo = 0;
     private final static int attach_gallery = 1;
-    private final static int attach_video = 2;
-    private final static int attach_audio = 3;
-    private final static int attach_document = 4;
-    private final static int attach_contact = 5;
-    private final static int attach_location = 6;
+    private final static int attach_video = 8;
+    private final static int attach_audio = 2;
+    private final static int attach_document = 3;
+    private final static int attach_contact = 4;
+    private final static int attach_location = 5;
 
     private final static int search = 40;
 
@@ -3232,40 +3232,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
                 @Override
                 public boolean didSelectVideo(String path) {
-                    if (Build.VERSION.SDK_INT >= 16) {
-                        return !openVideoEditor(path, true, true);
-                    } else {
-                        SendMessagesHelper.prepareSendingVideo(path, 0, 0, 0, 0, null, dialog_id, replyingMessageObject, null);
-                        showReplyPanel(false, null, null, null, false, true);
-                        DraftQuery.cleanDraft(dialog_id, true);
-                        return true;
-                    }
+                    showAttachmentError();
+                    return false;
                 }
             });
             presentFragment(fragment);
         } else if (which == attach_video) {
-            if (Build.VERSION.SDK_INT >= 23 && getParentActivity().checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                getParentActivity().requestPermissions(new String[]{Manifest.permission.CAMERA}, 20);
-                return;
-            }
-            try {
-                Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-                File video = AndroidUtilities.generateVideoPath();
-                if (video != null) {
-                    if (Build.VERSION.SDK_INT >= 24) {
-                        takeVideoIntent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(getParentActivity(), BuildConfig.APPLICATION_ID + ".provider", video));
-                        takeVideoIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-                        takeVideoIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                    } else if (Build.VERSION.SDK_INT >= 18) {
-                        takeVideoIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(video));
-                    }
-                    takeVideoIntent.putExtra(MediaStore.EXTRA_SIZE_LIMIT, (long) (1024 * 1024 * 1536));
-                    currentPicturePath = video.getAbsolutePath();
-                }
-                startActivityForResult(takeVideoIntent, 2);
-            } catch (Exception e) {
-                FileLog.e("tmessages", e);
-            }
+            showAttachmentError();
         } else if (which == attach_location) {
             if (!AndroidUtilities.isGoogleMapsInstalled(ChatActivity.this)) {
                 return;
