@@ -100,7 +100,7 @@ public class ContactsAdapter extends BaseSectionsAdapter {
                         return false;
                     }
                 } else {
-                    if (row == 3) {
+                    if (row == 1) {
                         return false;
                     }
                 }
@@ -145,11 +145,7 @@ public class ContactsAdapter extends BaseSectionsAdapter {
             }
         } else {
             if (section == 0) {
-                if (needPhonebook || isAdmin) {
-                    return 2;
-                } else {
-                    return 4;
-                }
+                return 2;
             } else if (section - 1 < sortedUsersSectionsArray.size()) {
                 ArrayList<TLRPC.TL_contact> arr = usersSectionsDict.get(sortedUsersSectionsArray.get(section - 1));
                 int count = arr.size();
@@ -216,10 +212,6 @@ public class ContactsAdapter extends BaseSectionsAdapter {
             } else {
                 if (position == 0) {
                     actionCell.setTextAndIcon(LocaleController.getString("NewGroup", R.string.NewGroup), R.drawable.menu_newgroup);
-                } else if (position == 1) {
-                    actionCell.setTextAndIcon(LocaleController.getString("NewSecretChat", R.string.NewSecretChat), R.drawable.menu_secret);
-                } else if (position == 2) {
-                    actionCell.setTextAndIcon(LocaleController.getString("NewChannel", R.string.NewChannel), R.drawable.menu_broadcast);
                 }
             }
         } else if (type == 1) {
@@ -270,15 +262,10 @@ public class ContactsAdapter extends BaseSectionsAdapter {
             return position < arr.size() ? 0 : 4;
         } else {
             if (section == 0) {
-                if (needPhonebook || isAdmin) {
-                    if (position == 1) {
-                        return 3;
-                    }
-                } else {
-                    if (position == 3) {
-                        return 3;
-                    }
+                if (position == 1) {
+                    return 3;
                 }
+
                 return 2;
             } else if (section - 1 < sortedUsersSectionsArray.size()) {
                 ArrayList<TLRPC.TL_contact> arr = usersSectionsDict.get(sortedUsersSectionsArray.get(section - 1));
